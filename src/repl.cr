@@ -1,7 +1,27 @@
+# Workaround for fix `undefined constant Command::Exit` in compiler.cr
+
+class Crystal::Command
+  enum Exit
+    # Successful exit
+    OK = 0
+
+    # Expected failure
+    FAILURE = 1
+
+    # User error (e.g. wrong CLI argument)
+    USAGE_ERROR = 1
+
+    # Code error (e.g. invalid source code)
+    CODE_ERROR = 1
+
+    # Internal compiler error
+    SOFTWARE_ERROR = 1
+  end
+end
+
 require "compiler/crystal/annotatable"
 require "compiler/crystal/tools/dependencies"
 require "compiler/crystal/config"
-require "compiler/crystal/command"
 require "compiler/crystal/crystal_path"
 require "compiler/crystal/error"
 require "compiler/crystal/exception"
